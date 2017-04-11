@@ -1,0 +1,19 @@
+version: '2'
+services:
+  app1:
+    build: ./kevin/
+    #command: './Rscript runServer.R'
+    volumes:
+     - ./kevin:/usr/local/src/plumber
+    restart: always
+    ports:
+     - "8000:8000"
+  # app2:
+  #   image: trestletech/plumber
+  #   command: /app/plumber.R
+  #   volumes:
+  #    - ../app2:/app
+  #   restart: always
+  #   ports:
+  #    - "7001:8000"
+  #

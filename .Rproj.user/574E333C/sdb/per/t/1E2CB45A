@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# kevin.R\n\n# Include your code \nsource(\"./partial.R\")\nsource(\"./re.R\")\n\ntable = loadData()\n\n#* @get /mean\nnormalMean <- function(samples=10){\n  #data <- rnorm(samples)*100\n  mean(gains())\n}\n\n\n#* @png\n#* @get /hello\nnormalMean <- function(samples=10){\n  \n  p <- scotterPlot(table)\n  print(p)\n}\n\n#* @get /gains\ngains <- function(){\n  createTableG(table)  \n}\n\n#* @post /sum\naddTwo <- function(a, b){\n  as.numeric(a) + as.numeric(b) + 20\n  gains()\n}\n",
+    "created" : 1491616957875.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2035970766",
+    "id" : "1E2CB45A",
+    "lastKnownWriteTime" : 1491617788,
+    "last_content_update" : 1491617788747,
+    "path" : "~/Documents/iCollections/School/plumber/plumber-service/main.R",
+    "project_path" : "main.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
