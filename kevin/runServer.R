@@ -1,4 +1,4 @@
 #run Server
 library(plumber)
 r <- plumb("main.R")
-r$run(port=8000)
+r$run(port=8001)
