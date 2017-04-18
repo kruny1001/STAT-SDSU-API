@@ -36,7 +36,6 @@ Params:
   * limit
 example: /gmtColNames/2/5
 
-
 Extract Target List by ID
 * @get /gmtColData/<id>
 
@@ -50,12 +49,19 @@ returns
   name
   data
 
-
 ###
-
 ```
 # update clone
 git reset --hard HEAD #if there are conflic merge problem
 git pull
 docker-compose restart
+```
+
+### useful docker command
+```
+docker-compose ps
+docker-compose restart
+docker-compsoe kill
+docker-compose stop
+docker-compose logs
 ```
