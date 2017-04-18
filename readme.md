@@ -1,4 +1,4 @@
-#SDSU-STAT-API
+# SDSU-STAT-API
 Plubmer Restful API Framework
 
 ```
@@ -15,11 +15,11 @@ docker-compose build\\
 docker-compose up -d\\
 ```
 
-API Examples
+## API Examples
 
-localhost:8000/gmtFiles
-localhost:8000/gmtColNames/2/5
-localhost:8000/gmtColData/2
+* localhost:8000/gmtFiles
+* localhost:8000/gmtColNames/2/5
+* localhost:8000/gmtColData/2
 
 ## API
 
