@@ -14,16 +14,12 @@ geneT <- append(
   readGMT(paste("gmt/",files[1],sep="")),
   readGMT(paste("gmt/",files[2],sep=""))
   )
-typeof(geneT)
-
-geneT
 
 # List GMT data files
 #* @get /gmtFiles
 gmtFiles <- function(){
   files <- list.files("gmt", pattern = "*gmt")
 }
-
 
 # Extract List ID from start to limit
 #* @get /gmtColNames/<start:int>/<limit:int>
@@ -42,7 +38,7 @@ gmtData <- function(id){
   targetData <- geneT[[id]]
   list(
     id = id,
-    name = trimws(names(geneT)[id]), 
+    name = trimws(names(geneT)[id]),
     data= targetData
   )
 }
