@@ -9,10 +9,10 @@ cd STAT-SDSU-API
 
 ```
 # Create container
-docker-compose build\\
+docker-compose build
 
 # Run Docker container
-docker-compose up -d\\
+docker-compose up -d
 ```
 
 ## API Examples
@@ -54,8 +54,8 @@ returns
 ###
 
 ```
-# update clone \\
-git reset --hard HEAD #if there are conflic merge problem\\
-git pull\\
-docker-compose restart\\
+# update clone
+git reset --hard HEAD #if there are conflic merge problem
+git pull
+docker-compose restart
 ```
