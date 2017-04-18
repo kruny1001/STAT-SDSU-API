@@ -53,9 +53,9 @@ returns
 
 ###
 
-'''
-# update clone
-git reset --hard HEAD #if there are conflic merge problem
-git pull
-docker-compose restart
-'''
+```
+# update clone \\
+git reset --hard HEAD #if there are conflic merge problem\\
+git pull\\
+docker-compose restart\\
+```
