@@ -10,6 +10,7 @@ RUN R -e 'install.packages(c("devtools"))'
 RUN R -e 'devtools::install_github("trestletech/plumber")'
 RUN R -e 'install.packages("ggplot2", dep = TRUE)'
 RUN R -e 'install.packages(c("data.table","RCurl", "earth", "mda", "faraway", "lattice", "caret"))'
+RUN R -e 'install.packages(c("earth", ""))'
 
 COPY ./ /usr/local/src/plumber/
 WORKDIR /usr/local/src/plumber/

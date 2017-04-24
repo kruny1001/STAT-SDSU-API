@@ -1,7 +1,9 @@
 version: '2'
 services:
   app1:
-    build: ./imp/
+    build:
+      context: .
+      dockerfile: imp/Dockerfile
     command: './Rscript runServer.R'
     volumes:
      - ./imp:/usr/local/src/plumber
