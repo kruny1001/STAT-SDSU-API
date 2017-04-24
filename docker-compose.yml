@@ -2,7 +2,7 @@ version: '2'
 services:
   app1:
     build: ./imp/
-    #command: './Rscript runServer.R'
+    command: './Rscript runServer.R'
     volumes:
      - ./imp:/usr/local/src/plumber
     restart: always
