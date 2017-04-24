@@ -1,0 +1,11 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+13 a, b $\sqrt2$ $\frac{b}{a}^3$
+
+```{r}
+plot(cars)
+```

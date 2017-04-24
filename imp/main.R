@@ -2,8 +2,13 @@
 
 # Include your code
 #source("./partial.R")
+library(jsonlite)
 source("./re.R")
 source("./gmtMain.R")
+
+source("./data.R")
+source("./mars.R")
+source("./gain.R")
 
 table = loadData()
 
@@ -14,6 +19,23 @@ geneT <- append(
   readGMT(paste("gmt/",files[1],sep="")),
   readGMT(paste("gmt/",files[2],sep=""))
   )
+
+
+####DEMO#######
+dataset <- DataClass$new(targetCol="Bad", part=.8)
+train = dataset$getTrain()
+test = dataset$getTest()
+
+form1 = as.formula(Bad ~ Quarterly_Fico_Score)
+form2 = as.formula(Bad ~Behavior_Score)
+form3 = as.formula(Bad ~Quarterly_Fico_Score + Behavior_Score)
+
+MARSRef1$createModel(form1, deg=1)
+model1 = MARSRef1$getModel()
+tablePred1 = MARSRef1$getPredTable()
+gainTable1 = MARSRef1$getGainTable()
+gainDecileTable1 = MARSRef1$getGainDecileTable()
+###############
 
 # List GMT data files
 #* @get /gmtFiles
@@ -41,6 +63,15 @@ gmtData <- function(id){
     name = trimws(names(geneT)[id]),
     data= targetData
   )
+}
+
+#Read Data from firebase
+#* @get /fb/data
+readFirebase <- function(){
+  # Example
+  readData <- GET("https://bcloud.firebaseio.com/fromR/names.json")
+  dd <- content(readData, "text")
+  toJSON(fromJSON(dd))
 }
 
 
