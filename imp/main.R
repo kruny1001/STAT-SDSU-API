@@ -3,14 +3,13 @@
 # Include your code
 #source("./partial.R")
 library(jsonlite)
-source("./re.R")
+
 source("./gmtMain.R")
 
 source("./data.R")
-source("./mars.R")
 source("./gain.R")
+source("./mars.R")
 
-table = loadData()
 
 # user can query to get all file names
 files <- list.files("gmt", pattern = "*gmt")
@@ -29,12 +28,14 @@ test = dataset$getTest()
 form1 = as.formula(Bad ~ Quarterly_Fico_Score)
 form2 = as.formula(Bad ~Behavior_Score)
 form3 = as.formula(Bad ~Quarterly_Fico_Score + Behavior_Score)
-
+MARSRef1 <- MARSClass$new(train, test)
 MARSRef1$createModel(form1, deg=1)
 model1 = MARSRef1$getModel()
 tablePred1 = MARSRef1$getPredTable()
 gainTable1 = MARSRef1$getGainTable()
 gainDecileTable1 = MARSRef1$getGainDecileTable()
+GainFunction = GainClass$new()
+
 ###############
 
 # List GMT data files
@@ -75,28 +76,49 @@ readFirebase <- function(){
 }
 
 
-###################################3
+###################################
 
-#* @get /mean
-normalMean <- function(samples=10){
-  print(gains())
-  mean(gains())
+# list retention data.table
+#* @get /train
+gmtFiles <- function(){
+  firstTest <- DataClass$new(targetCol="Bad", part=.8)
+  firstTest$getTest()
 }
 
+# Create lift graph
 #* @png
-#* @get /hello
+#* @get /plot
 normalMean <- function(samples=10){
-  p <- scotterPlot(table)
+  p <- GainFunction$createCumLiftPlot(gainDecileTable1)
   print(p)
 }
 
-#* @get /gains
-gains <- function(){
-  createTableG(table)
+#* @get /roc
+rocPoints <- function(){
+  gainTable1
 }
 
-#* @post /sum
-addTwo <- function(a, b){
-  as.numeric(a) + as.numeric(b) + 20
-  gains()
+#* @get /lift
+liftPoints <- function() {
+  gainDecileTable1
+}
+
+#* @get /refresh/<id:int>
+refresh <- function(id){
+  if(id == 1)
+    targetForm = form1
+  else if(id ==2)
+    targetForm = form2
+  else
+    targetForm = form3
+
+  firstTest <- DataClass$new(targetCol="Bad", part=.6)
+  train <- firstTest$getTrain()
+  test <- firstTest$getTest()
+  MARSRef1$createModel(targetForm, deg=1)
+  model1 <<- MARSRef1$getModel()
+  tablePred1 <<- MARSRef1$getPredTable()
+  gainTable1 <<- MARSRef1$getGainTable()
+  gainDecileTable1 <<- MARSRef1$getGainDecileTable()
+  gainDecileTable1
 }

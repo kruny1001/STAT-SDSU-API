@@ -17,4 +17,3 @@ VOLUME /usr/local/src/plumber/
 
 EXPOSE 8000
 CMD ["Rscript", "/lib/baseLib.R"]
-CMD ["Rscript", "runServer.R"]
